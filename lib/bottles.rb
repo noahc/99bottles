@@ -16,15 +16,23 @@ class Bottles
 
   def first_line(number)
     return "No more bottles of beer on the wall, no more bottles of beer." if number == 0
-    return "1 bottle of beer on the wall, 1 bottle of beer." if number == 1
-    "#{number} bottles of beer on the wall, #{number} bottles of beer."
+    "#{number} #{container(number)} of beer on the wall, #{number} #{container(number)} of beer."
   end
 
   def second_line(number)
     return "Go to the store and buy some more, 99 bottles of beer on the wall." if number == 0
     return "Take it down and pass it around, no more bottles of beer on the wall." if number == 1
-    return "Take one down and pass it around, 1 bottle of beer on the wall." if number == 2
-    "Take one down and pass it around, #{number - 1} bottles of beer on the wall."
+    "Take one down and pass it around, #{number - 1} #{container(number - 1)} of beer on the wall."
   end
 
+  def container(number)
+    if number == 1
+      "bottle"
+    else
+      "bottles"
+    end
+  end
+
+  def pronoun
+  end
 end
