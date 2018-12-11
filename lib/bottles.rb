@@ -9,20 +9,28 @@ class Bottles
   end
 
   def verse(number)
-    "#{first_line(number)}\n#{second_line(number)}\n"
+    "#{quantity(number).capitalize} #{container(number)} of beer on the wall, " +
+    "#{quantity(number)} #{container(number)} of beer.\n" +
+    "#{action(number)}, " + 
+    "#{quantity(successor(number))} #{container(successor(number))} of beer on the wall.\n"
   end
 
   private
 
-  def first_line(number)
-    return "No more bottles of beer on the wall, no more bottles of beer." if number == 0
-    "#{number} #{container(number)} of beer on the wall, #{number} #{container(number)} of beer."
+  def successor(number)
+    if number == 0
+      "99"
+    else
+      number - 1
+    end
   end
 
-  def second_line(number)
-    return "Go to the store and buy some more, 99 bottles of beer on the wall." if number == 0
-    return "Take it down and pass it around, no more bottles of beer on the wall." if number == 1
-    "Take one down and pass it around, #{number - 1} #{container(number - 1)} of beer on the wall."
+  def action(number)
+    if number == 0
+      "Go to the store and buy some more"
+    else
+      "Take #{pronoun(number)} down and pass it around"
+    end
   end
 
   def container(number)
@@ -33,6 +41,19 @@ class Bottles
     end
   end
 
-  def pronoun
+  def pronoun(number)
+    if number == 1
+      "it"
+    else
+      "one"
+    end
+  end
+
+  def quantity(number=0)
+    if number == 0
+      "no more"
+    else
+      number.to_s
+    end
   end
 end
